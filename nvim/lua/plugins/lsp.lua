@@ -29,11 +29,51 @@ return {
                 cmp_capabilities = true,
                 manage_nvim_cmp = true,
                 call_servers = 'local',
-                sign_icons = {
-                    error = 'E',
-                    warn = 'W',
-                    hint = 'H',
-                    info = 'I'
+                sign_icons = { error = 'E', warn = 'W', hint = 'H', info = 'I' }
+            })
+
+            require('luasnip').filetype_extend('javascript', { 'javascriptreact' })
+            require('luasnip').filetype_extend('javascript', { 'html' })
+            require('luasnip').filetype_extend('javascriptreact', { 'html' })
+            require('luasnip').filetype_extend('typescriptreact', { 'html' })
+
+            require('luasnip.loaders.from_vscode').lazy_load()
+
+            lsp.setup_nvim_cmp({
+                sources = {
+                    { name = 'path' }, { name = 'nvim_lsp' },
+                    { name = 'buffer',  keyword_length = 3 },
+                    { name = 'luasnip', keyword_length = 2 }
+                }
+            })
+
+            lsp.configure('lua_ls', {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
+                }
+            })
+
+            lsp.configure('lua-language-server', {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
+                }
+            })
+
+            lsp.configure('selene', {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
                 }
             })
 
@@ -41,16 +81,7 @@ return {
 
             lsp.setup()
 
-            vim.diagnostic.config({
-                virtual_text = true,
-            })
+            vim.diagnostic.config({ virtual_text = true })
         end
-    },
-
-    {
-        'j-hui/fidget.nvim',
-        config = function()
-            require('fidget').setup()
-        end
-    }
+    }, { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end }
 }
