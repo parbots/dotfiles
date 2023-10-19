@@ -23,7 +23,7 @@ M.get = function()
         },
         {
             { "n", "i", "v" },
-            "<C-h>",
+            "<C-i>",
             function()
                 vim.lsp.inlay_hint(0, nil)
             end,
