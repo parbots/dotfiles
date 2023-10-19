@@ -54,7 +54,7 @@ echo ""
 # Homebrew
 ################################################################################
 colorEcho $BLUE "Creating Brewfile..."
-rm -rf $HOMEBREW_DIR
+rm -rf $HOMEBREW_DIR/Brewfile
 mkdir $HOMEBREW_DIR
 brew bundle dump --describe --file=- > $HOMEBREW_DIR/Brewfile
 colorEcho $GREEN "Done!"
