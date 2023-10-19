@@ -1,0 +1,48 @@
+#!/bin/bash
+
+NC='\033[0m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+
+colorEcho() {
+    echo -e "$1$2$NC"
+}
+
+# Dotfiles directory
+DOTFILES_DIR=$HOME/dotfiles
+# Zsh dotfiles directory
+ZSH_DIR=$DOTFILES_DIR/zsh
+# Homebrew config directory
+HOMEBREW_DIR=$DOTFILES_DIR/homebrew
+
+echo ""
+
+colorEcho $BLUE "Installing zsh configs..."
+cp -R $ZSH_DIR/.zshrc $HOME/.zshrc
+colorEcho $GREEN "Done!"
+echo ""
+
+CONFIGS_DIR=$HOME/.config
+CONFIGS=(
+    kitty
+    nvim
+    yabai
+    sketchybar
+    skhd
+)
+
+colorEcho $BLUE "Installing .config configs..."
+for CONFIG in ${CONFIGS[@]};
+do
+    rm -rf $CONFIGS_DIR/$CONFIG
+    mkdir $CONFIGS_DIR/$CONFIG
+    cp -R $DOTFILES_DIR/$CONFIG/* $CONFIGS_DIR/$CONFIG/
+    colorEcho $GREEN "Installed $CONFIG"
+done
+colorEcho $GREEN "Done!"
+echo ""
+
+colorEcho $BLUE "Installing Brewfile..."
+brew bundle --file=$HOMEBREW_DIR/Brewfile
+colorEcho $GREEN "Done!"
+echo ""

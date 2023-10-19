@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# General
+APPLE=󰀵
+CLOCK=
+
+# Battery
+BATTERY_100=󰁹
+BATTERY_75=󰂀
+BATTERY_50=󰁾
+BATTERY_25=󰁼
+BATTERY_0=󱃍
+BATTERY_CHARGING=󰂅
+
+# Volume
+VOLUME_ON=󰕾
+VOLUME_OFF=󰸈
+
+# Wifi
+WIFI_LOADING=󱚾
+WIFI_CONNECTED=󰖩
+WIFI_NONE=󱚼
+
+# Homebrew and npm packages
+PACKAGES_NORMAL=󰏗
+PACKAGES_UPDATES=󱧕

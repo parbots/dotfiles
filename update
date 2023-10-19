@@ -1,0 +1,61 @@
+#!/bin/bash
+
+NC='\033[0m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+
+colorEcho() {
+    echo -e "$1$2$NC"
+}
+
+# Dotfiles directory
+DOTFILES_DIR=$HOME/dotfiles
+# Zsh dotfiles directory
+ZSH_DIR=$DOTFILES_DIR/zsh
+# Homebrew config directory
+HOMEBREW_DIR=$DOTFILES_DIR/homebrew
+
+echo ""
+
+################################################################################
+# Zsh
+################################################################################
+colorEcho $BLUE "Copying zsh configs..."
+rm -rf $ZSH_DIR
+mkdir $ZSH_DIR
+cp -R $HOME/.zshrc $ZSH_DIR/.zshrc
+colorEcho $GREEN "Done!"
+echo ""
+
+################################################################################
+# .configs
+################################################################################
+CONFIGS_DIR=$HOME/.config
+CONFIGS=(
+    kitty
+    nvim
+    yabai
+    sketchybar
+    skhd
+)
+
+colorEcho $BLUE "Copying .config configs..."
+for CONFIG in ${CONFIGS[@]};
+do
+    rm -rf $DOTFILES_DIR/$CONFIG
+    mkdir $DOTFILES_DIR/$CONFIG
+    cp -R $CONFIGS_DIR/$CONFIG/* $DOTFILES_DIR/$CONFIG/
+    colorEcho $GREEN "Copied $CONFIG"
+done
+colorEcho $GREEN "Done!"
+echo ""
+
+################################################################################
+# Homebrew
+################################################################################
+colorEcho $BLUE "Creating Brewfile..."
+rm -rf $HOMEBREW_DIR
+mkdir $HOMEBREW_DIR
+brew bundle dump --describe --file=- > $HOMEBREW_DIR/Brewfile
+colorEcho $GREEN "Done!"
+echo ""

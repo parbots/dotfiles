@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Palette
+export WHITE=0xffc6d0f5
+export BLACK=0xff303446
+export RED=0xffe78284
+export YELLOW=0xffe5c890
+export GREEN=0xffa6d189
+export BLUE=0xff8caaee
+export CYAN=0xff81c8be
+export MAGENTA=0xffca9ee6
+export ORANGE=0xffef9f76
+
+export MAIN_COLOR=0xffc6d0f5
+export HIGHLIGHT_COLOR=$MAGENTA
+export BACKGROUND_COLOR=0xff303446
+export BACKGROUND_HIGHLIGHT_COLOR=0xff51576d
+
+# General
+export BAR_COLOR=$BACKGROUND_COLOR
+export BAR_BORDER_COLOR=$MAIN_COLOR
+
+export ICON_COLOR=$MAIN_COLOR
+export LABEL_COLOR=$MAIN_COLOR
+
+export POPUP_BACKGROUND_COLOR=$BACKGROUND_HIGHLIGHT_COLOR
+export POPUP_BORDER_COLOR=$MAIN_COLOR

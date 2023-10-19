@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# Unload the macOS on screen indicator overlay for volume change
+launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
+
+source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/sketchybar/icons.sh"
+
+ITEM_DIR="$HOME/.config/sketchybar/items"
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+
+# 10
+BAR_MARGIN=0
+
+# 40
+BAR_HEIGHT=40
+
+# 10
+BAR_OFFSET=0
+
+BAR_BORDER_WIDTH=0
+BAR_BORDER_RADIUS=0
+
+BORDER_WIDTH=2
+BORDER_RADIUS=10
+
+PADDING=0
+ICON_PADDING=0
+LABEL_PADDING=0
+BACKGROUND_PADDING=0
+
+FONT="JetBrainsMono Nerd Font Mono:Bold"
+
+bar=(
+    height=$BAR_HEIGHT
+
+    y_offset=$BAR_OFFSET
+
+    margin=$BAR_MARGIN
+
+    padding_left=$PADDING
+    padding_right=$PADDING
+
+    border_width=$BAR_BORDER_WIDTH
+    corner_radius=$BAR_BORDER_RADIUS
+
+    color=$BAR_COLOR
+    border_color=$BAR_BORDER_COLOR
+)
+
+sketchybar --bar "${bar[@]}"
+
+defaults=(
+    padding_left=$PADDING
+    padding_right=$PADDING
+
+    icon.font="$FONT:16.0"
+    icon.color=$ICON_COLOR
+    icon.padding_left=$ICON_PADDING
+    icon.padding_right=$ICON_PADDING
+
+    label.font="$FONT:16.0"
+    label.color=$LABEL_COLOR
+    label.padding_left=$LABEL_PADDING
+    label.padding_right=$LABEL_PADDING
+
+    background.height=30
+    background.border_width=2
+    background.corner_radius=5
+    background.padding_left=$BACKGROUND_PADDING
+    background.padding_right=$BACKGROUND_PADDING
+
+    popup.background.color=$POPUP_BACKGROUND_COLOR
+    popup.background.border_color=$POPUP_BORDER_COLOR
+    popup.background.border_width=2
+    popup.background.corner_radius=5
+)
+
+sketchybar --default "${defaults[@]}"
+
+# Left
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# Right
+source "$ITEM_DIR/clock.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/packages.sh"
+
+sketchybar --update
+

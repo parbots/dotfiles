@@ -1,0 +1,125 @@
+#!/bin/bash
+
+################################################################################
+# Displays #####################################################################
+################################################################################
+
+# Navigate between displays
+ctrl + alt + cmd - n : yabai -m display --focus next || yabai -m display --focus first
+ctrl + alt + cmd - m : yabai -m display --focus prev || yabai -m display --focus last
+
+################################################################################
+# Spaces #######################################################################
+################################################################################
+
+# Navigate between spaces ######################################################
+ctrl + cmd - 1 : yabai -m space --focus 2
+ctrl + cmd - 2 : yabai -m space --focus 3
+ctrl + cmd - 3 : yabai -m space --focus 4
+ctrl + cmd - 4 : yabai -m space --focus 5
+ctrl + cmd - 5 : yabai -m space --focus 6
+ctrl + cmd - 6 : yabai -m space --focus 7
+ctrl + cmd - 7 : yabai -m space --focus 8
+ctrl + cmd - 8 : yabai -m space --focus 9
+
+# Move windows between spaces ##################################################
+ctrl + cmd + shift - 1 : $(yabai -m window --space 2 && yabai -m space --focus 2)
+ctrl + cmd + shift - 2 : $(yabai -m window --space 3 && yabai -m space --focus 3)
+ctrl + cmd + shift - 3 : $(yabai -m window --space 4 && yabai -m space --focus 4)
+ctrl + cmd + shift - 4 : $(yabai -m window --space 5 && yabai -m space --focus 5)
+ctrl + cmd + shift - 5 : $(yabai -m window --space 6 && yabai -m space --focus 6)
+ctrl + cmd + shift - 6 : $(yabai -m window --space 7 && yabai -m space --focus 7)
+ctrl + cmd + shift - 7 : $(yabai -m window --space 8 && yabai -m space --focus 8)
+ctrl + cmd + shift - 8 : $(yabai -m window --space 9 && yabai -m space --focus 9)
+
+# Navigate to next or previous space ###########################################
+
+ctrl + cmd - n : SPACE="$(yabai -m query --spaces --space | jq '.index')"; \
+    case $SPACE in \
+        "9") yabai -m space --focus 2 ;; \
+        *) yabai -m space --focus next ;; \
+    esac
+
+ctrl + cmd - m : SPACE="$(yabai -m query --spaces --space | jq '.index')"; \
+    case $SPACE in \
+        "2") yabai -m space --focus last ;; \
+        *) yabai -m space --focus prev ;; \
+    esac
+
+# Move windows to next or previous space ######################################
+
+ctrl + cmd + shift - n : SPACE="$(yabai -m query --spaces --space | jq '.index')"; \
+    case $SPACE in \
+        "9") $(yabai -m window --space 2 && yabai -m space --focus 2) ;; \
+        *) $(yabai -m window --space next && yabai -m space --focus next) ;; \
+    esac
+
+ctrl + cmd + shift - m : SPACE="$(yabai -m query --spaces --space | jq '.index')"; \
+    case $SPACE in \
+        "2") $(yabai -m window --space last && yabai -m space --focus last) ;; \
+        *) $(yabai -m window --space prev && yabai -m space --focus prev) ;; \
+    esac
+
+################################################################################
+# Windows ######################################################################
+################################################################################
+
+# Navigate between windows
+ctrl + cmd - h : yabai -m window --focus west \
+    || yabai -m display --focus west \
+    || yabai -m display --focus last
+ctrl + cmd - j : yabai -m window --focus south \
+    || yabai -m window --focus north \
+    || yabai -m window --focus east \
+    || yabai -m window --focus west
+ctrl + cmd - k : yabai -m window --focus north \
+    || yabai -m window --focus south \
+    || yabai -m window --focus west \
+    || yabai -m window --focus east
+ctrl + cmd - l : yabai -m window --focus east \
+    || yabai -m display --focus east \
+    || yabai -m display --focus first
+
+# Move windows
+ctrl + cmd + shift - h : yabai -m window --warp west || yabai -m window --move rel:-10:0
+ctrl + cmd + shift - j : yabai -m window --warp south || yabai -m window --move rel:0:10
+ctrl + cmd + shift - k : yabai -m window --warp north || yabai -m window --move rel:0:-10
+ctrl + cmd + shift - l : yabai -m window --warp east || yabai -m window --move rel:10:0
+
+# Resize window
+ctrl + alt - h : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
+ctrl + alt - j : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100
+ctrl + alt - k : yabai -m window --resize bottom:0:-100 || yabai -m window --resize top:0:-100
+ctrl + alt - l : yabai -m window --resize right:100:0 || yabai -m window --resize left:100:0
+
+################################################################################
+# Splits #######################################################################
+################################################################################
+
+# Toggle split orientation of selected window node
+ctrl + cmd - s : yabai -m window --toggle split
+
+# Balance window sizes in current space
+ctrl + cmd - e : yabai -m space --balance
+
+# Toggle window parent node
+ctrl + cmd - p : yabai -m window --toggle zoom-parent
+
+# Toggle window fullscreen
+ctrl + cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+
+# Toggle window float
+ctrl + alt - space : yabai -m window --toggle float
+
+################################################################################
+# Other ########################################################################
+################################################################################
+
+# Open new kitty terminal at home directory
+ctrl + cmd - t : kitty -d ~
+
+# Refresh homebrew services
+ctrl + alt + cmd - r : kitty --hold brew services restart --all
+
+# Open new firefox window
+ctrl + cmd - f : open /Applications/Firefox\ Developer\ Edition.app
