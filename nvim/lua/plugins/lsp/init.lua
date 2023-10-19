@@ -25,7 +25,7 @@ return {
             Util.map({
                 -- Popups
                 {
-                    "n",
+                    { "n" },
                     "<leader>Cv",
                     crates.show_versions_popup,
                     "Show crate versions",
@@ -91,6 +91,7 @@ return {
                 -- Shell
                 "bash-language-server",
                 "beautysh",
+                "shellcheck",
 
                 -- Python
                 "python-lsp-server",
@@ -130,8 +131,9 @@ return {
         config = function(_, opts)
             require("mason").setup(opts)
 
-            local mr = require("mason-registry")
-            mr:on("package:install:success", function()
+            local mason_registry = require("mason-registry")
+
+            mason_registry:on("package:install:success", function()
                 vim.defer_fn(function()
                     require("lazy.core.handler.event").trigger({
                         event = "FileType",
@@ -140,19 +142,21 @@ return {
                 end, 100)
             end)
 
-            local ensure_installed = function()
-                for _, tool in ipairs(opts.ensure_installed) do
-                    local p = mr.get_package(tool)
-                    if not p:is_installed() then
-                        p:install()
+            local install_packages = function()
+                for _, package_name in ipairs(opts.ensure_installed) do
+                    local mason_package =
+                        mason_registry.get_package(package_name)
+
+                    if not mason_package:is_installed() then
+                        mason_package:install()
                     end
                 end
             end
 
-            if mr.refresh then
-                mr.refresh(ensure_installed)
+            if mason_registry.refresh then
+                mason_registry.refresh(install_packages())
             else
-                ensure_installed()
+                install_packages()
             end
         end,
     },
@@ -168,17 +172,19 @@ return {
         dependencies = {
             { "folke/neodev.nvim", opts = {} },
 
-            "simrat39/rust-tools.nvim",
+            { "simrat39/rust-tools.nvim", opts = {} },
 
             {
                 "pmizio/typescript-tools.nvim",
                 dependencies = { "nvim-lua/plenary.nvim" },
+                opts = {},
             },
 
             "williamboman/mason.nvim",
             {
                 "williamboman/mason-lspconfig.nvim",
                 dependencies = { "williamboman/mason.nvim" },
+                opts = {},
             },
         },
         opts = function()

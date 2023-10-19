@@ -1,5 +1,3 @@
-local actions = require("telescope.actions")
-
 local M = {}
 
 M.custom_flex = function(picker, max_columns, max_lines, layout_config)
@@ -63,86 +61,34 @@ M.set_colors = function()
 end
 
 M.general_mappings = {
-    ["qq"] = {
-        actions.close,
-        type = "action",
-        opts = {
-            desc = "Close Picker (Telescope)",
-        },
-    },
-    ["<C-c>"] = {
-        actions.close,
-        type = "action",
-        opts = {},
-    },
+    ["qq"] = "close",
+    ["<C-c>"] = "close",
 
-    ["<Tab>"] = {
-        actions.move_selection_next,
-        type = "action",
-        opts = {},
-    },
-    ["<S-Tab>"] = {
-        actions.move_selection_previous,
-        type = "action",
-        opts = {},
-    },
+    ["<Tab>"] = "move_selection_next",
+    ["<S-Tab>"] = "move_selection_previous",
 
-    ["<C-s>"] = {
-        actions.select_vertical,
-        type = "action",
-        opts = {},
-    },
-
-    ["<C-h>"] = {
-        actions.which_key,
-        type = "action",
-        opts = {},
-    },
+    ["<C-s>"] = "select_vertical",
+    ["<C-h>"] = "which_key",
 }
 
-M.n_mappings = {
-    ["j"] = {
-        actions.move_selection_next,
-        type = "action",
-        opts = {},
-    },
-    ["k"] = {
-        actions.move_selection_previous,
-        type = "action",
-        opts = {},
-    },
-}
+M.n_mappings = vim.tbl_deep_extend("force", M.general_mappings, {
+    ["j"] = "move_selection_next",
+    ["k"] = "move_selection_previous",
+})
 
-M.i_mappings = {
+M.i_mappings = vim.tbl_deep_extend("force", M.general_mappings, {
     ["jj"] = {
         "<Esc>",
         type = "command",
-        opts = {},
     },
     ["jk"] = {
         "<Esc>",
         type = "command",
-        opts = {},
     },
 
-    ["<M-j>"] = {
-        actions.move_selection_next,
-        type = "action",
-        opts = {},
-    },
-    ["<M-k>"] = {
-        actions.move_selection_previous,
-        type = "action",
-        opts = {},
-    },
-}
-
-M.get_mappings = function()
-    return {
-        n = vim.tbl_deep_extend("force", M.general_mappings, M.n_mappings),
-        i = vim.tbl_deep_extend("force", M.general_mappings, M.i_mappings),
-    }
-end
+    ["<M-j>"] = "move_selection_next",
+    ["<M-k>"] = "move_selection_previous",
+})
 
 M.picker_opts = {
     live_grep = {
@@ -184,19 +130,11 @@ M.picker_opts = {
     help_tags = {
         mappings = {
             n = {
-                ["<CR>"] = {
-                    actions.select_vertical,
-                    type = "action",
-                    opts = {},
-                },
+                ["<CR>"] = "select_vertical",
             },
 
             i = {
-                ["<CR>"] = {
-                    actions.select_vertical,
-                    type = "action",
-                    opts = {},
-                },
+                ["<CR>"] = "select_vertical",
             },
         },
     },
@@ -207,19 +145,11 @@ M.picker_opts = {
 
         mappings = {
             n = {
-                ["<C-x>"] = {
-                    actions.delete_buffer,
-                    type = "action",
-                    opts = {},
-                },
+                ["<C-x>"] = "delete_buffer",
             },
 
             i = {
-                ["<C-x>"] = {
-                    actions.delete_buffer,
-                    type = "action",
-                    opts = {},
-                },
+                ["<C-x>"] = "delete_buffer",
             },
         },
     },

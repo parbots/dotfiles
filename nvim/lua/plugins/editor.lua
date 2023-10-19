@@ -2,7 +2,10 @@ return {
 
     {
         "folke/which-key.nvim",
-        keys = { { "<leader>" } },
+        event = { "LazyFile" },
+        keys = {
+            { "<leader>" },
+        },
         opts = {
             window = {
                 border = "none",
@@ -235,10 +238,25 @@ return {
     {
         "kylechui/nvim-surround",
         event = { "LazyFile" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            keymaps = {
+                insert = "<C-g>s",
+                insert_line = "<C-g>S",
+
+                normal = "ys",
+                normal_cur = "yss",
+                normal_line = "yS",
+                normal_line_cur = "ySS",
+
+                visual = "gs",
+                visual_line = "gS",
+
+                delete = "ds",
+                change = "cs",
+                change_line = "cS",
+            },
         },
-        opts = {},
     },
 
     {
@@ -246,16 +264,18 @@ return {
         event = { "LazyFile" },
         opts = {
             check_ts = true,
-            fast_wrap = {},
+            enable_abbr = true,
+
+            fast_wrap = {
+                map = "<M-e>",
+            },
         },
     },
 
     {
         "numToStr/Comment.nvim",
         event = { "LazyFile" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {},
     },
 
@@ -264,6 +284,10 @@ return {
         lazy = false,
         opts = {
             mapping = { "jj", "jk", "kj" },
+            keys = function()
+                return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>l"
+                    or "<Esc>"
+            end,
         },
     },
 }

@@ -33,35 +33,44 @@ return {
             },
 
             formatters_by_ft = {
+                -- Lua
                 lua = { "stylua" },
 
+                -- Rust
                 toml = { "taplo" },
                 rust = { "rustfmt" },
 
+                -- Javascript/Typescript
                 javascript = { "prettier" },
                 javascriptreact = { "prettier" },
                 typescript = { "prettier" },
                 typescriptreact = { "prettier" },
 
+                -- Html and CSS
                 html = { "prettier" },
                 css = { "prettier" },
 
+                -- Json
                 json = { "prettier" },
                 jsonc = { "prettier" },
 
+                -- Markdown
                 markdown = { "prettier" },
 
+                -- Python
                 python = { "isort", "black" },
 
+                -- Shell
                 shell = { "beautysh" },
                 sh = { "beautysh" },
                 zsh = { "beautysh" },
                 bash = { "beautysh" },
 
+                -- Any
                 ["*"] = {
-                    "trim_whitespace",
                     "trim_newlines",
                     "squeeze_blanks",
+                    "trim_whitespace",
                 },
             },
 

@@ -209,7 +209,10 @@ return {
 
                 winblend = 10,
 
-                mappings = Util.telescope.get_mappings(),
+                mappings = {
+                    n = Util.telescope.n_mappings,
+                    i = Util.telescope.i_mappings,
+                },
             },
 
             pickers = Util.telescope.picker_opts,

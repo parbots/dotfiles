@@ -111,6 +111,7 @@ return {
                 "regex",
                 "todotxt",
                 "query",
+                "ssh_config",
             },
 
             sync_install = false,

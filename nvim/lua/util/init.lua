@@ -7,6 +7,7 @@ setmetatable(M, {
     end,
 })
 
+-- Initialize Lazy.nvim path and install Lazy if not already installed
 M.lazy_init = function()
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -24,6 +25,8 @@ M.lazy_init = function()
     vim.opt.rtp:prepend(lazypath)
 end
 
+-- Wait for vim.notify to switch to Noice before showing notifications
+---@param delay number Milliseconds to wait before showing notifications
 M.lazy_notify = function(delay)
     local notifications = {}
 
@@ -34,13 +37,11 @@ M.lazy_notify = function(delay)
     local original = vim.notify
     vim.notify = temp
 
-    local timer = vim.loop.new_timer()
-    local check = assert(vim.loop.new_check())
+    local timer = vim.loop.new_timer() or {}
+    local check = assert(vim.loop.new_check()) or {}
 
     local replay = function()
-        if timer then
-            timer:stop()
-        end
+        timer:stop()
         check:stop()
 
         if vim.notify == temp then
@@ -60,9 +61,7 @@ M.lazy_notify = function(delay)
         end
     end)
 
-    if timer then
-        timer:start(delay or 500, 0, replay)
-    end
+    timer:start(delay or 1000, 0, replay)
 end
 
 M.use_lazy_file = true
@@ -71,6 +70,8 @@ M.lazy_file_events = {
     "BufNewFile",
     "BufWritePre",
 }
+
+-- Create a LazyFile event for lazy-loading plugins
 M.lazy_file = function()
     M.use_lazy_file = M.use_lazy_file and vim.fn.argc(-1) > 0
 
@@ -143,6 +144,7 @@ M.lazy_file = function()
     })
 end
 
+-- Get statusline component for Lazy.nvim plugin updates
 M.lazy_status = function()
     local lazy_status = require("lazy.status")
     return {
@@ -157,6 +159,9 @@ M.lazy_status = function()
     }
 end
 
+---@param name string Name of a plugin
+---@return table
+-- Get the opt values of a plugin
 M.opts = function(name)
     local plugin = require("lazy.core.config").plugins[name]
     if not plugin then
@@ -167,7 +172,16 @@ M.opts = function(name)
     return Plugin.values(plugin, "opts", false)
 end
 
--- Helper function to create multiple keymaps
+---@class Keymap
+---@field [1] string|table modes
+---@field [2] string lhs
+---@field [3] string|function rhs
+---@field [4] string desc
+---@field [5] table? opts
+
+---@param keymaps table<number, Keymap>> Keymaps to pass to `vim.keymap.set()`
+---@param global_opts table|nil Options to pass to `vim.keymap.set()`
+-- Helper function to create multiple keymaps with global options
 M.map = function(keymaps, global_opts)
     for _, keymap in ipairs(keymaps) do
         local modes = keymap[1]
