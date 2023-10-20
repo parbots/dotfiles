@@ -133,21 +133,18 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 ################################################################################
-# chruby #######################################################################
+# Ruby #########################################################################
 ################################################################################
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
-# Set ruby version
-chruby ruby-3.2.2
+# Enable frum
+eval "$(frum init)"
 
 ################################################################################
 # Aliases ######################################################################
 ################################################################################
 
 # Use eza for ls and l
-alias ls="eza -F --icons --group-directories-first -a"
+alias ls="eza --classify --icons=auto --group-directories-first --all --grid --across"
 alias l="ls -l"
 
 # Use colorized cat and less
@@ -185,8 +182,5 @@ export PATH="/Users/pickle/.local/share/bob/nvim-bin:$PATH"
 
 # Disable warning message at start
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-# add doom emacs to path
-export PATH="/Users/pickle/.emacs.d/bin:$PATH"
 
 # eval "$(starship init zsh)"

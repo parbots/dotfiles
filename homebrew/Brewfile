@@ -19,8 +19,6 @@ brew "fontconfig"
 brew "gettext"
 # General purpose syntax highlighter in pure Go
 brew "chroma"
-# Ruby environment tool
-brew "chruby"
 # Cross-platform make
 brew "cmake"
 # Documentation for CMake
@@ -33,12 +31,16 @@ brew "curl"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Fast and modern Ruby version manager written in Rust
+brew "frum"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
 brew "git"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # GNU grep, egrep and fgrep
@@ -51,6 +53,8 @@ brew "python@3.11"
 brew "grip"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# YAML Parser
+brew "libyaml"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Fast, highly customisable system info script
@@ -69,8 +73,6 @@ brew "openssl@1.1"
 brew "pkg-config"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Install Ruby, JRuby, Rubinius, TruffleRuby, or mruby
-brew "ruby-install"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Code-search similar to ack
