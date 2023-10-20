@@ -218,6 +218,8 @@ opt.shortmess:append({
 vim.g.loaded_netrw = 1
 vim.g.markdown_recommended_style = 0
 
+vim.g.loaded_perl_provider = 0
+
 if vim.fn.has("nvim-0.10") == 1 then
     opt.smoothscroll = true
 end

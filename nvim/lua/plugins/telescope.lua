@@ -8,154 +8,154 @@ return {
             -- File Pickers
             {
                 "<leader>ff",
-                "<CMD> Telescope find_files <CR>",
+                "<cmd> Telescope find_files <cr>",
                 desc = "Find Files (Telescope)",
             },
             {
                 "<leader>sw",
-                "<CMD> Telescope grep_string <CR>",
+                "<cmd> Telescope grep_string <cr>",
                 desc = "Current Word (Telescope)",
             },
             {
                 "<leader>sl",
-                "<CMD> Telescope live_grep <CR>",
+                "<cmd> Telescope live_grep <cr>",
                 desc = "Live Grep (Telescope)",
             },
             {
                 "<leader>fr",
-                "<CMD> Telescope oldfiles <CR>",
+                "<cmd> Telescope oldfiles <cr>",
                 desc = "Find Recent Files (Telescope)",
             },
 
             -- Vim Pickers
             {
                 "<leader>sb",
-                "<CMD> Telescope buffers <CR>",
+                "<cmd> Telescope buffers <cr>",
                 desc = "Buffers (Telescope)",
             },
             {
                 "<leader>sc",
-                "<CMD> Telescope commands <CR>",
+                "<cmd> Telescope commands <cr>",
                 desc = "Commands (Telescope)",
             },
             {
                 "<leader>sh",
-                "<CMD> Telescope help_tags <CR>",
+                "<cmd> Telescope help_tags <cr>",
                 desc = "Help Tags (Telescope)",
             },
             {
                 "<leader>sq",
-                "<CMD> Telescope quickfix <CR>",
+                "<cmd> Telescope quickfix <cr>",
                 desc = "Quickfix (Telescope)",
             },
             {
                 "<leader>sL",
-                "<CMD> Telescope loclist <CR>",
+                "<cmd> Telescope loclist <cr>",
                 desc = "Location List (Telescope)",
             },
             {
                 "<leader>sj",
-                "<CMD> Telescope jumplist <CR>",
+                "<cmd> Telescope jumplist <cr>",
                 desc = "Jumplist (Telescope)",
             },
             {
                 "<leader>sv",
-                "<CMD> Telescope vim_options <CR>",
+                "<cmd> Telescope vim_options <cr>",
                 desc = "Vim Options (Telescope)",
             },
             {
                 "<leader>sk",
-                "<CMD> Telescope keymaps <CR>",
+                "<cmd> Telescope keymaps <cr>",
                 desc = "Keymaps (Telescope)",
             },
             {
                 "<leader>si",
-                "<CMD> Telescope current_buffer_fuzzy_find <CR>",
+                "<cmd> Telescope current_buffer_fuzzy_find <cr>",
                 desc = "Current Buffer (Telescope)",
             },
 
             -- Lsp Pickers
             {
                 "<leader>flr",
-                "<CMD> Telescope lsp_references <CR>",
+                "<cmd> Telescope lsp_references <cr>",
                 desc = "References (Telescope)",
             },
             {
                 "<leader>fls",
-                "<CMD> Telescope lsp_document_symbols <CR>",
+                "<cmd> Telescope lsp_document_symbols <cr>",
                 desc = "Document Symbols (Telescope)",
             },
             {
                 "<leader>flw",
-                "<CMD> Telescope lsp_workspace_symbols <CR>",
+                "<cmd> Telescope lsp_workspace_symbols <cr>",
                 desc = "Workspace Symbols (Telescope)",
             },
             {
                 "<leader>flW",
-                "<CMD> Telescope lsp_dynamic_workspace_symbols <CR>",
+                "<cmd> Telescope lsp_dynamic_workspace_symbols <cr>",
                 desc = "Dynamic Workspace Symbols (Telescope)",
             },
             {
                 "<leader>sd",
-                "<CMD> Telescope diagnostics <CR>",
+                "<cmd> Telescope diagnostics <cr>",
                 desc = "Diagnostics (Telescope)",
             },
             {
                 "<leader>fli",
-                "<CMD> Telescope lsp_implementations <CR>",
+                "<cmd> Telescope lsp_implementations <cr>",
                 desc = "Implementations (Telescope)",
             },
             {
                 "<leader>fld",
-                "<CMD> Telescope lsp_definitions <CR>",
+                "<cmd> Telescope lsp_definitions <cr>",
                 desc = "Definitions (Telescope)",
             },
             {
                 "<leader>flt",
-                "<CMD> Telescope lsp_type_definitions <CR>",
+                "<cmd> Telescope lsp_type_definitions <cr>",
                 desc = "Type Definitions (Telescope)",
             },
 
             -- Git Pickers
             {
                 "<leader>gc",
-                "<CMD> Telescope git_commits <CR>",
+                "<cmd> Telescope git_commits <cr>",
                 desc = "Commits (Telescope)",
             },
             {
                 "<leader>gb",
-                "<CMD> Telescope git_bcommits <CR>",
+                "<cmd> Telescope git_bcommits <cr>",
                 desc = "Branch Commits (Telescope)",
             },
             {
                 "<leader>gB",
-                "<CMD> Telescope git_branches <CR>",
+                "<cmd> Telescope git_branches <cr>",
                 desc = "Branches (Telescope)",
             },
             {
                 "<leader>gs",
-                "<CMD> Telescope git_status <CR>",
+                "<cmd> Telescope git_status <cr>",
                 desc = "Status (Telescope)",
             },
 
             -- Treesitter Pickers
             {
                 "<leader>st",
-                "<CMD> Telescope treesitter <CR>",
+                "<cmd> Telescope treesitter <cr>",
                 desc = "Treesitter Nodes (Telescope)",
             },
 
             -- List Pickers
             {
                 "<leader>sp",
-                "<CMD> Telescope builtin <CR>",
+                "<cmd> Telescope builtin <cr>",
                 desc = "Pickers (Telescope)",
             },
 
             -- Plugin Pickers
             {
                 "<leader>snn",
-                "<CMD> Telescope noice <CR>",
+                "<cmd> Telescope noice <cr>",
                 desc = "All (Telescope)",
             },
         },

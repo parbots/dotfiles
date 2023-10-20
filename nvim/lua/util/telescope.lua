@@ -130,11 +130,11 @@ M.picker_opts = {
     help_tags = {
         mappings = {
             n = {
-                ["<CR>"] = "select_vertical",
+                ["<cr>"] = "select_vertical",
             },
 
             i = {
-                ["<CR>"] = "select_vertical",
+                ["<cr>"] = "select_vertical",
             },
         },
     },
@@ -156,6 +156,11 @@ M.picker_opts = {
 
     colorscheme = {
         enable_preview = true,
+    },
+
+    keymaps = {
+        modes = { "n", "i", "v" },
+        show_plug = false,
     },
 
     jumplist = {

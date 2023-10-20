@@ -4,47 +4,47 @@ return {
         keys = {
             {
                 "<leader>tt",
-                "<CMD> TroubleToggle <CR>",
+                "<cmd> TroubleToggle <cr>",
                 desc = "Toggle (Trouble)",
             },
             {
                 "<leader>tr",
-                "<CMD> TroubleRefresh <CR>",
+                "<cmd> TroubleRefresh <cr>",
                 desc = "Refresh (Trouble)",
             },
             {
                 "<leader>td",
-                "<CMD> TroubleToggle document_diagnostics <CR>",
+                "<cmd> TroubleToggle document_diagnostics <cr>",
                 desc = "Document Diagnostics (Trouble)",
             },
             {
                 "<leader>tw",
-                "<CMD> TroubleToggle workspace_diagnostics <CR>",
+                "<cmd> TroubleToggle workspace_diagnostics <cr>",
                 desc = "Workspace Diagnostics (Trouble)",
             },
             {
                 "<leader>tq",
-                "<CMD> TroubleToggle quickfix <CR>",
+                "<cmd> TroubleToggle quickfix <cr>",
                 desc = "Quickfix (Trouble)",
             },
             {
                 "<leader>tll",
-                "<CMD> TroubleToggle loclist <CR>",
+                "<cmd> TroubleToggle loclist <cr>",
                 desc = "Location List (Trouble)",
             },
             {
                 "<leader>tlr",
-                "<CMD> TroubleToggle lsp_references <CR>",
+                "<cmd> TroubleToggle lsp_references <cr>",
                 desc = "References (Trouble)",
             },
             {
                 "<leader>tld",
-                "<CMD> TroubleToggle lsp_definitions <CR>",
+                "<cmd> TroubleToggle lsp_definitions <cr>",
                 desc = "Definitions (Trouble)",
             },
             {
                 "<leader>tlt",
-                "<CMD> TroubleToggle lsp_type_definitions <CR>",
+                "<cmd> TroubleToggle lsp_type_definitions <cr>",
                 desc = "Type Definitions (Trouble)",
             },
         },

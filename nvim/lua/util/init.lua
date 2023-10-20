@@ -189,7 +189,7 @@ M.map = function(keymaps, global_opts)
         local rhs = keymap[3]
 
         local opts = vim.tbl_deep_extend(
-            "error",
+            "force",
             global_opts or {},
             keymap[5] or {},
             { desc = keymap[4] }

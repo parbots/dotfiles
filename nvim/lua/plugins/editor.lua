@@ -1,58 +1,86 @@
+local Util = require("util")
+
 return {
 
     {
         "folke/which-key.nvim",
         event = { "LazyFile" },
         keys = {
-            { "<leader>" },
+            { "<leader>", "<nop>", mode = { "n", "v" } },
         },
-        opts = {
-            window = {
-                border = "none",
-                winblend = 10,
-                margin = { 0, 0, 1, 0 },
-                padding = { 1, 1, 1, 1 },
-            },
+        opts = function()
+            return {
+                window = {
+                    border = "none",
+                    winblend = 10,
+                    margin = { 0, 0, 1, 0 },
+                    padding = { 1, 1, 1, 1 },
+                },
 
-            layout = {
-                width = { min = 1, max = 100 },
-                height = { min = 1, max = 25 },
-                spacing = 1,
-                align = "center",
-            },
-        },
+                popup_mappings = {
+                    scroll_up = "<C-U>",
+                    scroll_down = "<C-D>",
+                },
+
+                layout = {
+                    width = { min = 1, max = 100 },
+                    height = { min = 1, max = 200 },
+                    spacing = 1,
+                    align = "center",
+                },
+
+                icons = {
+                    breadcrumb = "»",
+                    separator = "➜",
+                    group = "+",
+                },
+
+                operators = Util.whichkey.operators,
+                key_labels = Util.whichkey.get_key_labels(),
+
+                triggers = {
+                    "<leader>",
+
+                    "c",
+                    "d",
+                    "g",
+                    "v",
+                    "y",
+                    "z",
+
+                    "<C-w>",
+
+                    ">",
+                    "<",
+                },
+
+                plugin = {
+                    marks = true,
+                    register = true,
+
+                    spelling = {
+                        enabled = true,
+                        suggestions = 20,
+                    },
+
+                    presets = {
+                        operators = false,
+                        motions = true,
+                        text_objects = true,
+                        windows = true,
+                        nav = true,
+                        z = true,
+                        g = true,
+                    },
+                },
+            }
+        end,
         config = function(_, opts)
-            local wk = require("which-key")
+            local whichkey = require("which-key")
 
-            wk.setup(opts)
+            whichkey.setup(opts)
 
-            wk.register({
-                ["c"] = {
-                    name = "+change",
-                },
-
-                ["d"] = {
-                    name = "+delete",
-                },
-
-                ["<leader>"] = {
-                    name = "+leader",
-
-                    b = { name = "+buffer" },
-                    d = { name = "+delete" },
-                    f = { name = "+find/file" },
-                    fl = { name = "+lsp" },
-                    g = { name = "+git" },
-                    l = { name = "+lsp" },
-                    o = { name = "+open" },
-                    s = { name = "+search/sort" },
-                    sn = { name = "+noice" },
-                    t = { name = "+tab/trouble" },
-                    tl = { name = "+lsp" },
-                    T = { name = "+treesitter" },
-                    w = { name = "+window/write" },
-                },
-            })
+            Util.whichkey.register(whichkey)
         end,
     },
 
@@ -189,7 +217,7 @@ return {
         keys = {
             {
                 "<leader>os",
-                "<CMD> Spectre <CR>",
+                "<cmd> Spectre <cr>",
                 desc = "Spectre",
             },
         },
@@ -226,7 +254,7 @@ return {
         keys = {
             {
                 "<leader>ou",
-                "<CMD> UndotreeToggle <CR>",
+                "<cmd> UndotreeToggle <cr>",
                 desc = "Undotree",
             },
         },
@@ -241,8 +269,8 @@ return {
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             keymaps = {
-                insert = "<C-g>s",
-                insert_line = "<C-g>S",
+                insert = "<C-G>s",
+                insert_line = "<C-G>S",
 
                 normal = "ys",
                 normal_cur = "yss",
@@ -285,8 +313,8 @@ return {
         opts = {
             mapping = { "jj", "jk", "kj" },
             keys = function()
-                return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>l"
-                    or "<Esc>"
+                return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<esc>l"
+                    or "<esc>"
             end,
         },
     },

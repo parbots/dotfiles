@@ -46,20 +46,20 @@ return {
                 dashboard.button(
                     "e",
                     "󰝒  >  New File",
-                    "<CMD> ene <BAR> startinsert <CR>"
+                    "<cmd> ene <BAR> startinsert <cr>"
                 ),
                 dashboard.button(
                     "f",
                     "󰱼  >  Find File",
-                    "<CMD> Telescope find_files <CR>"
+                    "<cmd> Telescope find_files <cr>"
                 ),
                 dashboard.button(
                     "w",
                     "  >  Find word",
-                    "<CMD> Telescope live_grep <CR>"
+                    "<cmd> Telescope live_grep <cr>"
                 ),
-                dashboard.button("l", "󰏗  >  Lazy", "<CMD> Lazy <CR>"),
-                dashboard.button("q", "  >  Quit", "<CMD> qa <CR>"),
+                dashboard.button("l", "󰏗  >  Lazy", "<cmd> Lazy <cr>"),
+                dashboard.button("q", "  >  Quit", "<cmd> qa <cr>"),
             }
             dashboard.section.buttons.opts.spacing = 1
             for _, item in ipairs(dashboard.section.buttons.val) do
@@ -666,12 +666,12 @@ return {
                     n = {
                         ["<Esc>"] = "Close",
                         ["q"] = "Close",
-                        ["<CR>"] = "Confirm",
+                        ["<cr>"] = "Confirm",
                     },
 
                     i = {
                         ["<C-c>"] = "Close",
-                        ["<CR>"] = "Confirm",
+                        ["<cr>"] = "Confirm",
                         ["<Up>"] = "HistoryPrev",
                         ["<Down>"] = "HistoryNext",
                     },
@@ -716,7 +716,7 @@ return {
                     mappings = {
                         ["<Esc>"] = "Close",
                         ["<C-c>"] = "Close",
-                        ["<CR>"] = "Confirm",
+                        ["<cr>"] = "Confirm",
                     },
                 },
             },

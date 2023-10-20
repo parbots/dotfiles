@@ -51,13 +51,13 @@ M.rust_analyzer = {
             {
                 { "n", "i" },
                 "<c-k>",
-                "<CMD> RustHoverActions <CR>",
+                "<cmd> RustHoverActions <cr>",
                 "Hover Actions (Rust)",
             },
             {
                 { "n" },
                 "cR",
-                "<CMD> RustCodeAction <CR>",
+                "<cmd> RustCodeAction <cr>",
                 "Code Actions (Rust)",
             },
         },

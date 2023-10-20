@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
             {
                 { "n" },
                 "q",
-                "<CMD> close <CR>",
+                "<cmd> close <cr>",
                 "Close (Autocmd)",
                 { buffer = event.buf },
             },

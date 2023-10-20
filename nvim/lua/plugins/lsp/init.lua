@@ -83,7 +83,7 @@ return {
         "williamboman/mason.nvim",
         cmd = "Mason",
         keys = {
-            { "<leader>om", "<CMD> Mason <CR>", desc = "Mason" },
+            { "<leader>om", "<cmd> Mason <cr>", desc = "Mason" },
         },
         build = ":MasonUpdate",
         opts = {
@@ -252,7 +252,7 @@ return {
             if opts.inlay_hints.enabled and inlay_hint then
                 Util.lsp.on_attach(function(client, buffer)
                     if client.supports_method("textDocument/inlayHint") then
-                        inlay_hint(buffer, true)
+                        inlay_hint(buffer, false)
                     end
                 end)
             end

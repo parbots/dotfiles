@@ -6,7 +6,7 @@ return {
         keys = {
             {
                 "<leader>Th",
-                "<CMD> TSToggle highlight <CR>",
+                "<cmd> TSToggle highlight <cr>",
                 desc = "Toggle highlighting (Treesitter)",
             },
         },

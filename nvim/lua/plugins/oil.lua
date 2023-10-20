@@ -3,7 +3,7 @@ return {
         "stevearc/oil.nvim",
         cmd = { "Oil" },
         keys = {
-            { "<leader>fe", "<CMD> Oil <CR>", desc = "File Explorer (Oil)" },
+            { "<leader>fe", "<cmd> Oil <cr>", desc = "File Explorer (Oil)" },
             {
                 "<C-e>",
                 function()
@@ -44,7 +44,7 @@ return {
             keymaps = {
                 ["<C-h>"] = "actions.show_help",
 
-                ["<CR>"] = "actions.select",
+                ["<cr>"] = "actions.select",
                 ["<C-c>"] = "actions.close",
                 ["<C-l>"] = "actions.refresh",
 

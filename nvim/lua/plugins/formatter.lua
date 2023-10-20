@@ -18,7 +18,7 @@ return {
             },
             {
                 "<leader>ci",
-                "<CMD> ConformInfo <CR>",
+                "<cmd> ConformInfo <cr>",
                 desc = "Info (Conform)",
             },
         },

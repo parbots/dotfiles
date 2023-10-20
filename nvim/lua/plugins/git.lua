@@ -56,13 +56,13 @@ return {
                         {
                             { "n", "v" },
                             "ghs",
-                            "<CMD> Gitsigns stage_hunk <CR>",
+                            "<cmd> Gitsigns stage_hunk <cr>",
                             "Stage Hunk (Gitsigns)",
                         },
                         {
                             { "n", "v" },
                             "ghr",
-                            "<CMD> Gitsigns reset_hunk <CR>",
+                            "<cmd> Gitsigns reset_hunk <cr>",
                             "Reset Hunk (Gitsigns)",
                         },
                         {
@@ -119,7 +119,7 @@ return {
                         {
                             { "o", "x" },
                             "ih",
-                            "<C-U> <CMD> Gitsigns select_hunk <CR>",
+                            "<C-U> <cmd> Gitsigns select_hunk <cr>",
                             "Select Hunk (Gitsigns)",
                         },
                     }, { buffer = buffer })
@@ -160,7 +160,7 @@ return {
     {
         "NeogitOrg/neogit",
         keys = {
-            { "<leader>on", "<CMD> Neogit <CR>", desc = "Neogit" },
+            { "<leader>on", "<cmd> Neogit <cr>", desc = "Neogit" },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -181,7 +181,7 @@ return {
         "pwntester/octo.nvim",
         cmd = "Octo",
         keys = {
-            { "<leader>oo", "<CMD> Octo <CR>", desc = "Octo" },
+            { "<leader>oo", "<cmd> Octo <cr>", desc = "Octo" },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",

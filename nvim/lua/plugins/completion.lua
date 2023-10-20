@@ -115,7 +115,7 @@ return {
 
                     ["<Tab>"] = cmp.mapping.select_next_item(),
                     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<cr>"] = cmp.mapping.confirm({ select = false }),
                 },
 
                 sources = cmp.config.sources({
@@ -150,7 +150,7 @@ return {
                             cmp.select_prev_item()
                         end
                     end, { "s", "c" }),
-                    ["<CR>"] = cmp.mapping(function()
+                    ["<cr>"] = cmp.mapping(function()
                         if cmp.visible() then
                             cmp.confirm({ select = false })
                         end
@@ -179,7 +179,7 @@ return {
                             cmp.select_prev_item()
                         end
                     end, { "i", "s", "c" }),
-                    ["<CR>"] = cmp.mapping(function()
+                    ["<cr>"] = cmp.mapping(function()
                         if cmp.visible() then
                             cmp.confirm({ select = false })
                         end

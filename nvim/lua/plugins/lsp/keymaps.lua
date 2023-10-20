@@ -10,7 +10,7 @@ M.get = function()
     end
 
     M.keymaps = {
-        { { "n" }, "<leader>li", "<CMD> LspInfo <CR>", "Info (Lsp)" },
+        { { "n" }, "<leader>li", "<cmd> LspInfo <cr>", "Info (Lsp)" },
 
         {
             { "n" },
@@ -23,7 +23,7 @@ M.get = function()
         },
         {
             { "n", "i", "v" },
-            "<C-i>",
+            "<C-n>",
             function()
                 vim.lsp.inlay_hint(0, nil)
             end,
@@ -94,13 +94,6 @@ M.get = function()
         {
             { "n" },
             "<leader>gK",
-            vim.lsp.buf.signature_help,
-            "Signature Help (Lsp)",
-            has = "signatureHelp",
-        },
-        {
-            { "n", "i" },
-            "<C-k>",
             vim.lsp.buf.signature_help,
             "Signature Help (Lsp)",
             has = "signatureHelp",
