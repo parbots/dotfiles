@@ -20,11 +20,11 @@ echo ""
 ################################################################################
 # Zsh
 ################################################################################
-colorEcho $BLUE "Copying zsh configs..."
-rm -rf $ZSH_DIR
-mkdir $ZSH_DIR
-cp -R $HOME/.zshrc $ZSH_DIR/.zshrc
-colorEcho $GREEN "Done!"
+colorEcho "$BLUE" "Copying zsh configs..."
+rm -rf "$ZSH_DIR"
+mkdir "$ZSH_DIR"
+cp -R "$HOME/.zshrc" "$ZSH_DIR/.zshrc"
+colorEcho "$GREEN" "Done!"
 echo ""
 
 ################################################################################
@@ -39,23 +39,23 @@ CONFIGS=(
     skhd
 )
 
-colorEcho $BLUE "Copying .config configs..."
-for CONFIG in ${CONFIGS[@]};
+colorEcho "$BLUE" "Copying .config configs..."
+for CONFIG in "${CONFIGS[@]}";
 do
-    rm -rf $DOTFILES_DIR/$CONFIG
-    mkdir $DOTFILES_DIR/$CONFIG
-    cp -R $CONFIGS_DIR/$CONFIG/* $DOTFILES_DIR/$CONFIG/
-    colorEcho $GREEN "Copied $CONFIG"
+    rm -rf "${DOTFILES_DIR:?}/${CONFIG:?}"
+    mkdir "$DOTFILES_DIR/$CONFIG"
+    cp -R "$CONFIGS_DIR/$CONFIG"/* "$DOTFILES_DIR/$CONFIG/"
+    colorEcho "$GREEN" "Copied $CONFIG"
 done
-colorEcho $GREEN "Done!"
+colorEcho "$GREEN" "Done!"
 echo ""
 
 ################################################################################
 # Homebrew
 ################################################################################
-colorEcho $BLUE "Creating Brewfile..."
-rm -rf $HOMEBREW_DIR/Brewfile
-mkdir $HOMEBREW_DIR
-brew bundle dump --describe --file=- > $HOMEBREW_DIR/Brewfile
-colorEcho $GREEN "Done!"
+colorEcho "$BLUE" "Creating Brewfile..."
+rm -rf "$HOMEBREW_DIR/Brewfile"
+mkdir "$HOMEBREW_DIR"
+brew bundle dump --describe --file=- > "$HOMEBREW_DIR/Brewfile"
+colorEcho "$GREEN" "Done!"
 echo ""

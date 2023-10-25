@@ -17,9 +17,9 @@ HOMEBREW_DIR=$DOTFILES_DIR/homebrew
 
 echo ""
 
-colorEcho $BLUE "Installing zsh configs..."
-cp -R $ZSH_DIR/.zshrc $HOME/.zshrc
-colorEcho $GREEN "Done!"
+colorEcho "$BLUE" "Installing zsh configs..."
+cp -R "$ZSH_DIR/.zshrc" "$HOME/.zshrc"
+colorEcho "$GREEN" "Done!"
 echo ""
 
 CONFIGS_DIR=$HOME/.config
@@ -31,18 +31,18 @@ CONFIGS=(
     skhd
 )
 
-colorEcho $BLUE "Installing .config configs..."
-for CONFIG in ${CONFIGS[@]};
+colorEcho "$BLUE" "Installing .config configs..."
+for CONFIG in "${CONFIGS[@]}";
 do
-    rm -rf $CONFIGS_DIR/$CONFIG
-    mkdir $CONFIGS_DIR/$CONFIG
-    cp -R $DOTFILES_DIR/$CONFIG/* $CONFIGS_DIR/$CONFIG/
-    colorEcho $GREEN "Installed $CONFIG"
+    rm -rf "${CONFIGS_DIR:?}/${CONFIG:?}"
+    mkdir "$CONFIGS_DIR/$CONFIG"
+    cp -R "$DOTFILES_DIR/$CONFIG"/* "$CONFIGS_DIR/$CONFIG/"
+    colorEcho "$GREEN" "Installed $CONFIG"
 done
-colorEcho $GREEN "Done!"
+colorEcho "$GREEN" "Done!"
 echo ""
 
-colorEcho $BLUE "Installing Brewfile..."
-brew bundle --file=$HOMEBREW_DIR/Brewfile
-colorEcho $GREEN "Done!"
+colorEcho "$BLUE" "Installing Brewfile..."
+brew bundle --file="$HOMEBREW_DIR/Brewfile"
+colorEcho "$GREEN" "Done!"
 echo ""
