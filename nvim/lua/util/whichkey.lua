@@ -1,3 +1,4 @@
+---@class util.whichkey
 local M = {}
 
 M.get_key_labels = function()
@@ -14,9 +15,10 @@ M.get_key_labels = function()
         "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()-_=+[{}]\\|;:'\",<.>/?"
 
     -- Operator
-    local op_keys = { "cr", "CR" }
+    local op_keys = { "cr", "CR", "Bslash", "BSlash", "bslash" }
     local op_labels = {}
     op_labels["CR"] = "RET"
+    op_labels["BSLASH"] = "\\"
 
     local get_key = function(prefix, key)
         return "<" .. prefix .. "-" .. key .. ">"
@@ -222,6 +224,8 @@ M.groups = {
 
             [">"] = { name = "+indent right" },
             ["<"] = { name = "+indent left" },
+
+            ["!"] = { name = "+filter through external program" },
 
             -- Leader
             ["<leader>"] = { name = "+leader" },

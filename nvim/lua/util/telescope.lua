@@ -1,3 +1,4 @@
+---@class util.telescope
 local M = {}
 
 M.custom_flex = function(picker, max_columns, max_lines, layout_config)
@@ -20,7 +21,6 @@ M.custom_flex = function(picker, max_columns, max_lines, layout_config)
 
     if custom_layout.preview then
         custom_layout.preview.title = false
-        -- custom_layout.preview.height = custom_layout.preview.height - 1
     end
 
     return custom_layout

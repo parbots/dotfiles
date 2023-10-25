@@ -1,3 +1,4 @@
+---@class config.icons
 local M = {}
 
 M.diagnostics = {

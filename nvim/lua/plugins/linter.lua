@@ -3,10 +3,9 @@ return {
     event = { "LazyFile" },
     opts = {
         linters_by_ft = {
-            shell = { "shellcheck" },
-            sh = { "shellcheck" },
-            bash = { "shellcheck" },
             zsh = { "shellcheck" },
+            bash = { "shellcheck" },
+            sh = { "shellcheck" },
         },
     },
     config = function(_, opts)

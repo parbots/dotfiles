@@ -1,18 +1,14 @@
 local Util = require("util")
 
-local augroup = function(name)
-    return vim.api.nvim_create_augroup("picklevim_" .. name, { clear = true })
-end
-
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-    group = augroup("checktime"),
+    group = Util.augroup("checktime"),
     command = "checktime",
 })
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    group = augroup("highlight_yank"),
+    group = Util.augroup("highlight_yank"),
     callback = function()
         vim.highlight.on_yank()
     end,
@@ -20,7 +16,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 -- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-    group = augroup("resize_splits"),
+    group = Util.augroup("resize_splits"),
     callback = function()
         local current_tab = vim.fn.tabpagenr()
         vim.cmd("tabdo wincmd=")
@@ -30,7 +26,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- Go to last location when opening a buffer
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-    group = augroup("last_location"),
+    group = Util.augroup("goto_last_location"),
     callback = function(event)
         local exclude = {
             "gitcommit",
@@ -56,7 +52,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 
 -- Close some filetypes with <q>
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = augroup("close_with_q"),
+    group = Util.augroup("close_with_q"),
     pattern = {
         "checkhealth",
         "help",
@@ -74,22 +70,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        Util.map({
-            {
-                { "n" },
-                "q",
-                "<cmd> close <cr>",
-                "Close (Autocmd)",
-                { buffer = event.buf },
-            },
-        })
+        Util.keymap.set(
+            { "n" },
+            "q",
+            "<cmd> close <cr>",
+            "Close (Autocmd)",
+            { buffer = event.buf }
+        )
     end,
 })
 
 -- Auto create directory when saving a file, in case some intermediate directory
 -- does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = augroup("auto_create_directory"),
+    group = Util.augroup("auto_create_directory"),
     callback = function(event)
         if event.match:match("^%w%w+://") then
             return

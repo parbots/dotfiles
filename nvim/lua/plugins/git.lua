@@ -1,7 +1,4 @@
-local Util = require("util")
-
 return {
-
     {
         "lewis6991/gitsigns.nvim",
         event = { "LazyFile" },
@@ -44,7 +41,9 @@ return {
                 },
 
                 on_attach = function(buffer)
-                    Util.map({
+                    local keymap_util = require("util.keymap")
+
+                    keymap_util.map({
                         { { "n" }, "]h", gs.next_hunk, "Next Hunk (Gitsigns)" },
                         {
                             { "n" },

@@ -1,5 +1,3 @@
-local Util = require("util")
-
 return {
 
     {
@@ -9,6 +7,8 @@ return {
             { "<leader>", "<nop>", mode = { "n", "v" } },
         },
         opts = function()
+            local whichkey_util = require("util.whichkey")
+
             return {
                 window = {
                     border = "none",
@@ -35,8 +35,8 @@ return {
                     group = "+",
                 },
 
-                operators = Util.whichkey.operators,
-                key_labels = Util.whichkey.get_key_labels(),
+                operators = whichkey_util.operators,
+                key_labels = whichkey_util.get_key_labels(),
 
                 triggers = {
                     "<leader>",
@@ -80,7 +80,7 @@ return {
 
             whichkey.setup(opts)
 
-            Util.whichkey.register(whichkey)
+            require("util.whichkey").register(whichkey)
         end,
     },
 

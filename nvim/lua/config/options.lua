@@ -80,13 +80,13 @@ opt.winblend = 10
 opt.splitkeep = "screen"
 opt.splitright = true
 opt.splitbelow = true
-opt.fillchars:append(
-    "vert: ,horiz: ,horizdown: ,horizup: ,verthoriz: ,vertleft: ,vertright: "
-)
 
 -- Popups
 opt.pumblend = 15
 opt.pumheight = 10
+
+-- Cursor
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver20,r-cr-o:hor20"
 
 -- #############################################################################
 -- # Editor
@@ -132,20 +132,19 @@ opt.infercase = true
 -- Virtual editing
 opt.virtualedit = "block"
 
--- Scrolloff
+-- Scrolling
 opt.scrolloff = 8
 opt.sidescrolloff = 8
+opt.smoothscroll = true
 
 -- Folding and conceal
 opt.foldenable = false
 opt.foldlevel = 99
 opt.foldlevelstart = 99
-opt.foldcolumn = "0"
+opt.foldcolumn = "auto"
 opt.conceallevel = 2
-if vim.fn.has("nvim-0.10") then
-    opt.foldmethod = "expr"
-    opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-end
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Confirm unsaved changes
 opt.confirm = true
@@ -215,17 +214,32 @@ opt.shortmess:append({
     C = true,
 })
 
-vim.g.loaded_netrw = 1
-vim.g.markdown_recommended_style = 0
+opt.shellcmdflag = "-ic"
 
+-- Disable globals
+vim.g.loaded_netrw = 1
 vim.g.loaded_perl_provider = 0
 
-if vim.fn.has("nvim-0.10") == 1 then
-    opt.smoothscroll = true
-end
+vim.g.markdown_recommended_style = 0
 
 if vim.fn.exists("syntax_on") ~= 1 then
     vim.cmd("syntax on")
 end
 
 vim.cmd("filetype plugin indent on")
+
+-- Neovide Configuration
+if vim.g.neovide then
+    -- General
+    vim.g.neovide_hide_mouse_when_typing = true
+    vim.g.neovide_theme = "dark"
+    vim.g.neovide_refresh_rate = 60
+    vim.g.neovide_refresh_rate_idle = 5
+
+    -- Cursor
+    vim.g.neovide_cursor_animation_length = 0.10
+    vim.g.neovide_cursor_trail_size = 0.2
+    vim.g.neovide_cursor_antialiasing = true
+    vim.g.neovide_cursor_animate_in_insert_mode = true
+    vim.g.neovide_cursor_animate_command_line = true
+end

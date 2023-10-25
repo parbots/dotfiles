@@ -22,15 +22,13 @@ return {
             integrations = {
                 alpha = true,
                 cmp = true,
-                dropbar = {
-                    enabled = true,
-                    color_mode = true,
-                },
                 flash = true,
                 gitsigns = true,
                 lsp_trouble = true,
                 mason = true,
-                mini = true,
+                mini = {
+                    enabled = true,
+                },
                 neogit = true,
                 noice = true,
                 native_lsp = {

@@ -1,4 +1,4 @@
-local Util = require("util")
+local telescope_util = require("util.telescope")
 
 return {
     {
@@ -210,12 +210,12 @@ return {
                 winblend = 10,
 
                 mappings = {
-                    n = Util.telescope.n_mappings,
-                    i = Util.telescope.i_mappings,
+                    n = telescope_util.n_mappings,
+                    i = telescope_util.i_mappings,
                 },
             },
 
-            pickers = Util.telescope.picker_opts,
+            pickers = telescope_util.picker_opts,
 
             extensions = {
                 fzf = {
@@ -228,11 +228,11 @@ return {
         },
         config = function(_, opts)
             require("telescope.pickers.layout_strategies").custom_flex =
-                Util.telescope.custom_flex
+                telescope_util.custom_flex
 
             require("telescope").setup(opts)
 
-            Util.telescope.set_colors()
+            telescope_util.set_colors()
 
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("noice")

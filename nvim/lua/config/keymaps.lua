@@ -1,23 +1,20 @@
-local Util = require("util")
+local keymap_util = require("util.keymap")
 
-local opts = {
+local global_opts = {
     noremap = true,
-    silent = false,
+    silent = true,
 }
 
-Util.map({
+keymap_util.map({
     -- #########################################################################
     -- # General
     -- #########################################################################
 
     -- Unmap space
-    { { "" }, "<space>", "<nop>", "Leader" },
+    { { "n", "v" }, "<space>", "<nop>", "Leader" },
 
     -- Easier command mode
-    { { "n" }, ";", ":", "Command Mode" },
-
-    -- Easier execute external
-    { { "n" }, "!", ":!", "Execute External Command" },
+    { { "n" }, ";", ":", "Command Mode", { silent = false } },
 
     -- Easier quitting
     { { "n" }, "Q", "<cmd> q <cr>", "Quit" },
@@ -37,21 +34,21 @@ Util.map({
         "k",
         "v:count == 0 ? 'gk' : 'k'",
         "Up",
-        { expr = true },
+        { expr = true, silent = false },
     },
     {
         { "n", "x" },
         "j",
         "v:count == 0 ? 'gj' : 'j'",
         "Down",
-        { expr = true },
+        { expr = true, silent = false },
     },
 
-    -- Move cursor in insert mode and terminal mode
-    { { "i", "t" }, "<M-h>", "<left>", "Left" },
-    { { "i", "t" }, "<M-j>", "<down>", "Down" },
-    { { "i", "t" }, "<M-k>", "<up>", "Up" },
-    { { "i", "t" }, "<M-l>", "<right>", "Right" },
+    -- Move cursor in insert mode and command mode
+    { { "i", "c" }, "<M-h>", "<left>", "Left" },
+    { { "i", "c" }, "<M-j>", "<down>", "Down" },
+    { { "i", "c" }, "<M-k>", "<up>", "Up" },
+    { { "i", "c" }, "<M-l>", "<right>", "Right" },
 
     -- Goto beginning and end of line in insert and command mode
     { { "i", "c" }, "<C-a>", "<home>", "Goto Start (Line)" },
@@ -89,9 +86,9 @@ Util.map({
         "J",
         function()
             vim.cmd([[
-        normal! mzJ`z
-        delmarks z
-        ]])
+                normal! mzJ`z
+                delmarks z
+            ]])
         end,
         "Join Line",
     },
@@ -100,9 +97,9 @@ Util.map({
         "gJ",
         function()
             vim.cmd([[
-        normal! zmgJ`z
-        delmarks z
-        ]])
+                normal! zmgJ`z
+                delmarks z
+            ]])
         end,
         "Join Visual Lines",
     },
@@ -133,6 +130,7 @@ Util.map({
 
     -- Splits
     { { "n" }, "<leader>ws", "<C-w>v", "Split Vertically (Window)" },
+    { { "n" }, "<leader>wS", "<C-w>s", "Split Horizontally (Window)" },
 
     -- Balance
     { { "n" }, "<leader>w=", "<C-w>=", "Balance (Window)" },
@@ -142,10 +140,21 @@ Util.map({
     { { "n" }, "<leader>wj", "<C-w>j", "Goto Down (Window)" },
     { { "n" }, "<leader>wk", "<C-w>k", "Goto Up (Window)" },
     { { "n" }, "<leader>wl", "<C-w>l", "Goto Right (Window)" },
+
     { { "n" }, "<C-h>", "<C-w>h", "Goto Left (Window)" },
     { { "n" }, "<C-j>", "<C-w>j", "Goto Down (Window)" },
     { { "n" }, "<C-k>", "<C-w>k", "Goto Up (Window)" },
     { { "n" }, "<C-l>", "<C-w>l", "Goto Right (Window)" },
+
+    { { "i" }, "<C-h>", "<esc><C-w><C-h>gi", "Goto Left (Window)" },
+    { { "i" }, "<C-j>", "<esc><C-w><C-j>gi", "Goto Down (Window)" },
+    { { "i" }, "<C-k>", "<esc><C-w><C-k>gi", "Goto Up (Window)" },
+    { { "i" }, "<C-l>", "<esc><C-w><C-l>gi", "Goto Right (Window)" },
+
+    { { "t" }, "<C-h>", "<cmd> wincmd h <cr>", "Goto Left (Window)" },
+    { { "t" }, "<C-j>", "<cmd> wincmd j <cr>", "Goto Down (Window)" },
+    { { "t" }, "<C-k>", "<cmd> wincmd k <cr>", "Goto Up (Window)" },
+    { { "t" }, "<C-l>", "<cmd> wincmd l <cr>", "Goto Right (Window)" },
 
     -- Move
     { { "n" }, "<leader>wH", "<C-w>H", "Move Left (Window)" },
@@ -161,6 +170,17 @@ Util.map({
     -- # Tabs
     -- #########################################################################
 
+    -- Goto Nth
+    { { "n" }, "<leader>t1", "<cmd> tabn 1 <cr>", "Goto 1 (Tab)" },
+    { { "n" }, "<leader>t2", "<cmd> tabn 2 <cr>", "Goto 2 (Tab)" },
+    { { "n" }, "<leader>t3", "<cmd> tabn 3 <cr>", "Goto 3 (Tab)" },
+    { { "n" }, "<leader>t4", "<cmd> tabn 4 <cr>", "Goto 4 (Tab)" },
+    { { "n" }, "<leader>t5", "<cmd> tabn 5 <cr>", "Goto 5 (Tab)" },
+    { { "n" }, "<leader>t6", "<cmd> tabn 6 <cr>", "Goto 6 (Tab)" },
+    { { "n" }, "<leader>t7", "<cmd> tabn 7 <cr>", "Goto 7 (Tab)" },
+    { { "n" }, "<leader>t8", "<cmd> tabn 8 <cr>", "Goto 8 (Tab)" },
+    { { "n" }, "<leader>t9", "<cmd> tabn 9 <cr>", "Goto 9 (Tab)" },
+
     -- Goto Next and Previous
     { { "n" }, "<leader>tn", "<cmd> tabnext <cr>", "Goto Next (Tab)" },
     { { "n" }, "<leader>tp", "<cmd> tabprevious <cr>", "Goto Previous (Tab)" },
@@ -173,4 +193,4 @@ Util.map({
     -- # Lazy
     -- #########################################################################
     { { "n" }, "<leader>ol", "<cmd> Lazy <cr>", "Lazy" },
-}, opts)
+}, global_opts)

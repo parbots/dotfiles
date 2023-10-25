@@ -61,10 +61,9 @@ return {
                 python = { "isort", "black" },
 
                 -- Shell
-                shell = { "beautysh" },
-                sh = { "beautysh" },
-                zsh = { "beautysh" },
-                bash = { "beautysh" },
+                zsh = { "shfmt" },
+                bash = { "shfmt" },
+                shell = { "shfmt" },
 
                 -- Any
                 ["*"] = {

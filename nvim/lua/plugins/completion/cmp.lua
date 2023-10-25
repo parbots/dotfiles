@@ -1,24 +1,4 @@
 return {
-
-    {
-        "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        opts = {},
-        config = function(_, opts)
-            local luasnip = require("luasnip")
-
-            luasnip.setup(opts)
-
-            luasnip.filetype_extend("html", { "javascript" })
-            luasnip.filetype_extend("typescript", { "javascript" })
-            luasnip.filetype_extend("javascriptreact", { "html", "css" })
-            luasnip.filetype_extend("typescriptreact", { "html", "css" })
-
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-    },
-
     {
         "hrsh7th/nvim-cmp",
         event = { "LazyFile" },

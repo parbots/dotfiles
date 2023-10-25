@@ -1,8 +1,7 @@
-local Util = require("util")
+local lazy_util = require("util.lazy")
 
-Util.lazy_init()
-
-Util.lazy_file()
+lazy_util.init()
+lazy_util.create_lazy_file_event()
 
 return function(opts)
     opts = vim.tbl_deep_extend("force", {
@@ -13,6 +12,9 @@ return function(opts)
 
         spec = {
             { import = "plugins" },
+            { import = "plugins.ui" },
+            { import = "plugins.lsp" },
+            { import = "plugins.completion" },
         },
 
         git = {
@@ -44,6 +46,7 @@ return function(opts)
 
         checker = {
             enabled = true,
+
             notify = true,
             frequency = 3600,
         },
@@ -86,10 +89,9 @@ return function(opts)
             loader = false,
             require = false,
         },
-    }, opts or {})
+    }, opts or {}) or {}
 
-    -- Load Lazy.nvim and plugins
     require("lazy").setup(opts)
 
-    Util.lazy_notify(1000)
+    lazy_util.notify(1000)
 end

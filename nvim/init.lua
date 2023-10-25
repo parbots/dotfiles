@@ -6,7 +6,7 @@ end
 -- Load vim configuration options
 require("config.options")
 
--- Load vim configuration options
+-- Load autocommands
 require("config.autocmds")
 
 -- Load keymaps
