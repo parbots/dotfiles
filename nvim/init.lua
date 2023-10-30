@@ -3,19 +3,13 @@ if vim.loader then
     vim.loader.enable()
 end
 
--- Load vim configuration options
-require("config.options")
-
--- Load autocommands
-require("config.autocmds")
-
--- Load keymaps
-require("config.keymaps")
-
 -- Load Lazy.nvim and plugins
-require("config.lazy")({
+require("config.lazy").setup({
     profiling = {
-        loader = false,
-        require = false,
+        loader = true,
+        require = true,
     },
 })
+
+-- Load PickleVim
+require("picklevim").setup()

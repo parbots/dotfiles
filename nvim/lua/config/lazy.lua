@@ -1,97 +1,159 @@
-local lazy_util = require("util.lazy")
+---@class config.lazy
+local M = {}
 
-lazy_util.init()
-lazy_util.create_lazy_file_event()
+local setup_lazypath = function()
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-return function(opts)
-    opts = vim.tbl_deep_extend("force", {
-        defaults = {
-            lazy = true,
-            version = false,
+    if not vim.loop.fs_stat(lazypath) then
+        vim.fn.system({
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable",
+            lazypath,
+        })
+    end
+
+    vim.opt.rtp:prepend(lazypath)
+end
+
+---@type LazyConfig
+local config = {
+    spec = {
+        { import = "picklevim.plugins" },
+        { import = "picklevim.plugins.ui" },
+        { import = "picklevim.plugins.lsp" },
+        { import = "picklevim.plugins.completion" },
+
+        -- { import = "plugins" },
+    },
+
+    defaults = {
+        lazy = true,
+        version = false,
+    },
+
+    git = {
+        log = { "-10" },
+        timeout = 120,
+    },
+
+    install = {
+        missing = true,
+
+        colorsceme = { "catppuccin" },
+    },
+
+    ui = {
+        size = {
+            width = 0.8,
+            height = 0.8,
         },
+        wrap = true,
 
-        spec = {
-            { import = "plugins" },
-            { import = "plugins.ui" },
-            { import = "plugins.lsp" },
-            { import = "plugins.completion" },
-        },
+        border = "solid",
+        title = "Lazy.nvim",
+        title_pos = "left",
 
-        git = {
-            log = { "-10" },
-            timeout = 120,
-        },
+        pills = true,
 
-        install = {
-            missing = true,
-            colorsceme = { "catppuccin" },
-        },
-
-        ui = {
-            size = {
-                width = 0.8,
-                height = 0.8,
+        icons = {
+            cmd = " ",
+            config = "",
+            event = "",
+            ft = " ",
+            init = " ",
+            import = "󰋺 ",
+            keys = "󰌆 ",
+            lazy = "󰒲 ",
+            loaded = "●",
+            not_loaded = "○",
+            plugin = "󰏗 ",
+            runtime = " ",
+            require = " ",
+            source = " ",
+            start = "󰼛",
+            task = " ",
+            list = {
+                "●",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
             },
-
-            wrap = true,
-            border = "solid",
-            pills = true,
         },
+    },
 
-        throttle = 10,
+    throttle = 10,
 
-        diff = {
-            cmd = "diffview.nvim",
-        },
+    diff = {
+        cmd = "diffview.nvim",
+    },
 
-        checker = {
+    checker = {
+        enabled = true,
+
+        notify = true,
+        frequency = 3600,
+    },
+
+    change_detection = {
+        enabled = true,
+        notify = false,
+    },
+
+    performance = {
+        cache = {
             enabled = true,
-
-            notify = true,
-            frequency = 3600,
         },
 
-        change_detection = {
-            enabled = true,
-            notify = false,
-        },
+        reset_packpath = true,
 
-        performance = {
-            cache = {
-                enabled = true,
-            },
-
-            reset_packpath = true,
-
-            rtp = {
-                reset = true,
-                disabled_plugins = {
-                    "editorconfig",
-                    "gzip",
-                    -- "matchit",
-                    -- "matchparen",
-                    "netrwPlugin",
-                    "rplugin",
-                    "tarPlugin",
-                    "tohtml",
-                    "tutor",
-                    "zipPlugin",
-                },
+        rtp = {
+            reset = true,
+            disabled_plugins = {
+                "editorconfig",
+                "gzip",
+                -- "matchit",
+                -- "matchparen",
+                "netrwPlugin",
+                "rplugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
             },
         },
+    },
 
-        readme = {
-            enabled = true,
-            skip_if_doc_exists = true,
-        },
+    readme = {
+        enabled = true,
+        skip_if_doc_exists = true,
+    },
 
-        profiling = {
-            loader = false,
-            require = false,
-        },
-    }, opts or {}) or {}
+    profiling = {
+        loader = false,
+        require = false,
+    },
+}
+
+---@param opts LazyConfig
+M.setup = function(opts)
+    opts = vim.tbl_deep_extend("force", config, opts or {}) or {}
+
+    setup_lazypath()
 
     require("lazy").setup(opts)
-
-    lazy_util.notify(1000)
 end
+
+return M

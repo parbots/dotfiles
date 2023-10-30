@@ -47,8 +47,6 @@ brew "go"
 brew "grep"
 # Library for command-line editing
 brew "readline"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # GitHub Markdown previewer
 brew "grip"
 # Lightweight and flexible command-line JSON processor
@@ -73,6 +71,8 @@ brew "openjdk"
 brew "openssl@1.1"
 # Manage compile and link flags for libraries
 brew "pkg-config"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Cross-shell prompt for astronauts
